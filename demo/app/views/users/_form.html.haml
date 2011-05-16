@@ -1,0 +1,14 @@
+= form_for user do |f|
+  = render :partial => "shared/errors", :locals => { :record => user }
+  
+  .field
+    = f.label :username
+    %br
+    = f.text_field :username
+  .field
+    = f.label :email
+    %br
+    = f.text_field :email
+    
+  .actions
+    = f.submit

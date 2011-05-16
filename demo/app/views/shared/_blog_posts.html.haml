@@ -1,0 +1,12 @@
+- content_for :fancygrid_buttons do
+  = link_to "New Post", new_blog_post_path(blog)
+  |
+  = link_to 'Edit', edit_blog_path(blog)
+  |
+  = link_to 'Back', blogs_path
+  
+%h2
+  Listing posts from Blog
+  = blog.title
+  
+= fancygrid :posts, :template => "fancygrid/posts"

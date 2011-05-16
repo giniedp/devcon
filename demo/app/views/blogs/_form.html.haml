@@ -1,0 +1,14 @@
+= form_for blog do |f|
+  = render :partial => "shared/errors", :locals => { :record => blog }
+  
+  .field
+    = f.label :title
+    %br
+    = f.text_field :title
+  .field
+    = f.label :description
+    %br
+    = f.text_field :description
+    
+  .actions
+    = f.submit

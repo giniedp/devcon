@@ -1,0 +1,29 @@
+:ruby
+  scoped = (current_blog and [current_blog, post] or post)
+  
+= form_for scoped do |f|
+  = render :partial => "shared/errors", :locals => { :record => post }
+  
+  - if current_blog
+    = f.hidden_field :blog_id, :value => current_blog.id
+  - else
+    .field
+      = f.label :blog_id
+      %br
+      = collection_select(:post, :blog_id, Blog.all, :id, :title, :prompt => true)
+      
+  .field
+    = f.label :title
+    %br
+    = f.text_field :title
+  .field
+    = f.label :description
+    %br
+    = f.text_field :description
+  .field
+    = f.label :body
+    %br
+    = f.text_area :body
+    
+  .actions
+    = f.submit

@@ -1,0 +1,7 @@
+demo/.bundle
+demo/db/*.sqlite3
+demo/log/*.log
+demo/tmp/
+.rvmrc
+demo/.rvmrc
+

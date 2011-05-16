@@ -1,0 +1,25 @@
+
+%p
+  %b
+    Blog:
+  = @post.blog.title
+  
+%p
+  %b
+    Title:
+  = @post.title
+
+%p
+  %b
+    Description:
+  = @post.description
+  
+%p
+  %b
+    Body:
+  = @post.body
+
+
+= link_to 'Edit', edit_blog_post_path(@post.blog, @post)
+|
+= link_to 'Back', blog_posts_path(@post.blog)

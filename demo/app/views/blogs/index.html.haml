@@ -1,0 +1,14 @@
+%h1
+  Listing blogs
+
+- content_for :fancygrid_buttons do
+  = link_to 'New Blog', new_blog_path
+  
+= fancygrid :blogs do |column, record, value|
+  - case column.name
+  - when :actions
+    = link_to "Show", blog_path(record)
+    |
+    = link_to "Edit", edit_blog_path(record)
+    |
+    = link_to "Delete", blog_path(record), :method => :delete, :confirm => "Delete?"

@@ -1,0 +1,41 @@
+de:
+  fancygrid:
+    pagination:
+      per_page: 'Pro Seite:'
+      page: 'Seite'
+      of: 'von'
+      results: 'Ergebnisse'
+      
+      prev_page: 'Vorherige Seite'
+      next_page: 'Nächste Seite'
+      reload: 'Seite neu laden'
+    sort:
+      submit: "Spalten sortieren"
+      info: "Sie können die Spalten per Drag&Drop sortieren. Ziehen Sie die Spalten die Sie sehen möchten in die linke Liste, alle anderen in die rechte Liste. Klicken Sie zum Abschluss in den abgedunkelten Bereich."
+      header_visible: "Sichtbare Spalten"
+      header_hidden: "Versteckte Spalten"
+    search:
+      title: 'Suche'
+      submit: 'Suchen'
+      clear: 'Suche löschen'
+      toggle: 'Suchleiste zeigen/verstecken'
+      conditions: 'Alle Bedingungen müssen erfüllt sein:'
+      
+      operator:
+        equal: 'gleich'
+        not_equal: 'ungleich'
+        less: 'kleiner'
+        less_equal: 'kleiner oder gleich'
+        greater: 'größer'
+        greater_equal: 'größer oder gleich'
+        starts_with: 'beginnt mit'
+        ends_with: 'endet mit'
+        like: 'ähnlich wie'
+        is_null: 'ist leer'
+        is_not_null: 'ist nicht leer'
+        is_true: 'ist wahr'
+        is_not_true: 'ist nicht wahr'
+        is_false: 'ist falsch'
+        is_not_false: 'ist nicht falsch'
+        in: 'ist in'
+        not_in: 'ist nicht in'

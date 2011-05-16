@@ -1,0 +1,50 @@
+@import "_fancygrid.scss";
+
+body{
+  width:960px;
+  margin:15px auto;
+  font-family: Arial, "MS Trebuchet", sans-serif;
+}
+
+p{
+  margin:0 0 20px 0;
+  li {
+    line-height:20px;
+  }
+}
+
+header#page_header{
+  width:100%;
+}
+
+header#page_header, #page_footer{
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;  
+    li {
+      padding:0;
+      margin: 0 20px 0 0;
+      display:inline;
+    }
+  }
+}
+
+section#posts{
+  float: left;
+  width: 100%;
+  aside {
+    float: right;
+    width: 35%;
+    margin-left: 5%;
+    font-size: 20px;
+    line-height: 40px;
+  }
+}
+
+footer#page_footer{
+  clear: both;
+  width: 100%;
+  display: block;
+  text-align: center;
+}
