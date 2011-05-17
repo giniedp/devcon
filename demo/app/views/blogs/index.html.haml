@@ -2,13 +2,15 @@
   Listing blogs
 
 - content_for :fancygrid_buttons do
-  = link_to 'New Blog', new_blog_path
+  = link_to 'New Blog', new_user_blog_path(scoped_user)
+  |
+  = link_to 'Back', users_path
   
 = fancygrid :blogs do |column, record, value|
   - case column.name
   - when :actions
-    = link_to "Show", blog_path(record)
+    = link_to "Show", user_blog_path(scoped_user, record)
     |
-    = link_to "Edit", edit_blog_path(record)
+    = link_to "Edit", edit_user_blog_path(scoped_user, record)
     |
-    = link_to "Delete", blog_path(record), :method => :delete, :confirm => "Delete?"
+    = link_to "Delete", user_blog_path(scoped_user, record), :method => :delete, :confirm => "Delete?"

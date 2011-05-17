@@ -1,14 +1,27 @@
 class PostsController < ApplicationController
+  
+  before_filter do
+    scoped_user(:user_id)
+    scoped_blog(:blog_id)
+  end
+  
   # GET /posts
   # GET /posts.xml
   def index
     
     fancygrid_for :posts do |grid|
+      grid.columns_for :blog do |blog|
+        blog.hidden :id, :user_id
+        blog.attributes :title
+      end
+      
       grid.attributes :id, :blog_id, :title, :description, :body
       grid.rendered :actions
-      grid.url = blog_posts_path(current_blog)
+      grid.url = user_blog_posts_path(scoped_user, scoped_blog)
       grid.find do |query|
-        query.conditions ["posts.blog_id = ?", current_blog]
+        query.conditions ["blogs.user_id = ?", scoped_user]
+        query.conditions ["posts.blog_id = ?", scoped_blog]
+        query.include :blog => { :user => {} }
       end
     end
 
@@ -19,15 +32,29 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
 
-    respond_with @post.blog, @post
+    respond_to do |format|
+      format.html
+      format.pdf do
+        Tools::Fop.render_pdf({
+          :xml => @post.to_pdf,
+          :xsl => Rails.root.join("app", "views", "xsl", "generic.xsl")
+        }) do |pdf, success, error|
+          if success
+            send_file(pdf, :filename => "output.pdf", :content_type => "application/pdf")
+          else 
+            # raise or log error
+          end
+        end   
+      end
+    end
+
+    respond_with scoped_user, @post.blog, @post
   end
 
   # GET /posts/new
   # GET /posts/new.xml
   def new
-    @post = Post.new(:blog => current_blog)
-
-    respond_with @post
+    @post = Post.new(:blog => scoped_blog)
   end
 
   # GET /posts/1/edit
@@ -40,7 +67,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(params[:post])
     @post.save
-    respond_with @post.blog, @post
+    respond_with scoped_user, @post.blog, @post
   end
 
   # PUT /posts/1
@@ -48,7 +75,7 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     @post.update_attributes(params[:post])
-    respond_with @post.blog, @post
+    respond_with scoped_user, @post.blog, @post
   end
 
   # DELETE /posts/1
@@ -56,6 +83,6 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    respond_with @post.blog, @post
+    respond_with scoped_user, @post.blog, @post
   end
 end

@@ -1,11 +1,16 @@
 :ruby
-  scoped = (current_blog and [current_blog, post] or post)
+  if scoped_user && scoped_blog
+    scoped = [scoped_user, scoped_blog, post]
+  else
+    scoped = post
+  end
+  
   
 = form_for scoped do |f|
   = render :partial => "shared/errors", :locals => { :record => post }
   
-  - if current_blog
-    = f.hidden_field :blog_id, :value => current_blog.id
+  - if scoped_blog
+    = f.hidden_field :blog_id, :value => scoped_blog.id
   - else
     .field
       = f.label :blog_id

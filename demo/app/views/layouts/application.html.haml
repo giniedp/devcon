@@ -26,16 +26,27 @@
       %nav
         %ul
           %li
+            = link_to "Home", root_path
+          %li
             = link_to "Roles", roles_path
           %li
             = link_to "Users", users_path
-          %li
-            = link_to "Blogs", blogs_path
             
     %section#page_section
+      #js-flash
+        - flash.each do |k,v|
+          .message{ :class => k }= v
+          
       = yield
       
     %footer#page_footer
       You can find this demonstration project on github at
       = link_to "https://github.com/giniedp/devcon", "https://github.com/giniedp/devcon"
     
+:javascript
+  $(function(){
+    $("#js-flash").bind("mouseenter", function(){ 
+      $(this).hide();
+    });
+    setTimeout ( function(){ $("#js-flash").fadeOut(500); }, 15000 );
+  });

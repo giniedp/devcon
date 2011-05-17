@@ -3,4 +3,4 @@
 
 = render :partial => 'form', :locals => { :post => @post }
 
-= link_to 'Back', blog_posts_path(@post.blog)
+= link_to 'Back', user_blog_posts_path(scoped_user, @post.blog)

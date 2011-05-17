@@ -1,4 +1,9 @@
 class BlogsController < ApplicationController
+  
+  before_filter do
+    scoped_user(:user_id)
+  end
+  
   # GET /blogs
   # GET /blogs.xml
   def index
@@ -7,8 +12,11 @@ class BlogsController < ApplicationController
       grid.hidden :id, :user_id
       grid.attributes :title, :description
       grid.rendered :actions
-      grid.url = blogs_path
-      grid.find
+      grid.url = user_blogs_path(scoped_user)
+      grid.find do |query|
+        query.conditions ["blogs.user_id = ?", scoped_user]
+        query.select "*"
+      end
     end
     
   end
@@ -19,12 +27,17 @@ class BlogsController < ApplicationController
     @blog = Blog.find(params[:id])
     
     fancygrid_for :posts do |grid|
-      grid.hidden :id, :blog_id
-      grid.attributes :topic, :description, :body
+      grid.columns_for :blog do |blog|
+        blog.hidden :id, :user_id
+        blog.attributes :title
+      end
+      
+      grid.attributes :id, :blog_id, :title, :description, :body
       grid.rendered :actions
-      grid.url = blog_posts_path(@blog)
+      grid.url = user_blog_posts_path(scoped_user, @blog)
       grid.find do |query|
-        query.conditions ["post.blog_id = ?", @blog]
+        query.conditions ["blogs.user_id = ?", scoped_user]
+        query.conditions ["posts.blog_id = ?", @blog]
       end
     end
     
@@ -35,7 +48,6 @@ class BlogsController < ApplicationController
   # GET /blogs/new.xml
   def new
     @blog = Blog.new
-    respond_with @blog
   end
 
   # GET /blogs/1/edit
@@ -48,7 +60,7 @@ class BlogsController < ApplicationController
   def create
     @blog = Blog.new(params[:blog])
     @blog.save
-    respond_with @blog
+    respond_with scoped_user, @blog
   end
 
   # PUT /blogs/1
@@ -56,7 +68,7 @@ class BlogsController < ApplicationController
   def update
     @blog = Blog.find(params[:id])
     @blog.update_attributes(params[:blog])
-    respond_with @blog
+    respond_with scoped_user, @blog
   end
 
   # DELETE /blogs/1
@@ -64,6 +76,6 @@ class BlogsController < ApplicationController
   def destroy
     @blog = Blog.find(params[:id])
     @blog.destroy
-    respond_with @blog
+    respond_with scoped_user, @blog
   end
 end

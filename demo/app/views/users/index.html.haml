@@ -7,6 +7,8 @@
 = fancygrid :users do |column, record, value|
   - case column.name
   - when :actions
+    = link_to "Blogs", user_blogs_path(record)
+    |
     = link_to "Edit", edit_user_path(record)
     |
     = link_to "Delete", user_path(record), :method => :delete, :confirm => "Delete?"

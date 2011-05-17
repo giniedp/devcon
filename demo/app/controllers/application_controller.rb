@@ -1,12 +1,16 @@
 # app/controllers/application_controller.rb
-require "app_responder"
+#require "app_responder"
   
 class ApplicationController < ActionController::Base
   include ApplicationHelper
+  include Renderer::PdfRenderer
+  
   protect_from_forgery
-  self.responder = AppResponder
-  respond_to :html
+  self.responder = Responder::ApplicationResponder
+  respond_to :html, :xml, :pdf
     
   def index
   end
 end
+
+

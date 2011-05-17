@@ -1,1 +1,1 @@
-= render :partial => "shared/blog_posts", :locals => { :blog => current_blog(:id) }
+= render :partial => "shared/blog_posts", :locals => { :user => scoped_user, :blog => @blog }

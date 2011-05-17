@@ -1,11 +1,11 @@
 Demo::Application.routes.draw do
   
-  resources :blogs do
-    resources :posts
-  end
-  resources :posts
   resources :roles
-  resources :users
+  resources :users do
+    resources :blogs do
+      resources :posts
+    end
+  end
 
   root :to => "application#index"
 end

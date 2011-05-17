@@ -48,3 +48,26 @@ footer#page_footer{
   display: block;
   text-align: center;
 }
+
+#js-flash{
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  text-align: center;
+  .message{
+    padding: 5px;
+  }
+  .notice{
+    background: #F0E68C;
+    border: 1px solid yellow;
+  }
+  .error{
+    background: #FFC0CB;
+    border: 1px solid red;
+  }
+  .success{
+    background: #90EE90;
+    border: 1px solid green;
+  }
+}

@@ -20,6 +20,6 @@
   = @post.body
 
 
-= link_to 'Edit', edit_blog_post_path(@post.blog, @post)
+= link_to 'Edit', edit_user_blog_post_path(scoped_user, @post.blog, @post)
 |
-= link_to 'Back', blog_posts_path(@post.blog)
+= link_to 'Back', user_blog_posts_path(scoped_user, @post.blog)

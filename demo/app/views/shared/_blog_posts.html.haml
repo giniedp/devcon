@@ -1,9 +1,9 @@
 - content_for :fancygrid_buttons do
-  = link_to "New Post", new_blog_post_path(blog)
+  = link_to "New Post", new_user_blog_post_path(user, blog)
   |
-  = link_to 'Edit', edit_blog_path(blog)
+  = link_to 'Edit', edit_user_blog_path(user, blog)
   |
-  = link_to 'Back', blogs_path
+  = link_to 'Back', user_blogs_path(user)
   
 %h2
   Listing posts from Blog
