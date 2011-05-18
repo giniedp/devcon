@@ -7,5 +7,10 @@ Demo::Application.routes.draw do
     end
   end
 
+  namespace :api do
+    resources :users
+    resources :posts
+  end
+  
   root :to => "application#index"
 end

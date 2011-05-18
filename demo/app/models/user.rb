@@ -19,4 +19,5 @@ class User < ActiveRecord::Base
   def to_pdf
     self.to_xml
   end
+
 end

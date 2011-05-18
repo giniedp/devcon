@@ -25,6 +25,7 @@ class PostsController < ApplicationController
       end
     end
 
+    respond_with(@fancygrid[:posts].dataset, :grid => @fancygrid[:posts], :responder => Responder::FancygridResponder)
   end
 
   # GET /posts/1
@@ -32,21 +33,21 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
 
-    respond_to do |format|
-      format.html
-      format.pdf do
-        Tools::Fop.render_pdf({
-          :xml => @post.to_pdf,
-          :xsl => Rails.root.join("app", "views", "xsl", "generic.xsl")
-        }) do |pdf, success, error|
-          if success
-            send_file(pdf, :filename => "output.pdf", :content_type => "application/pdf")
-          else 
-            # raise or log error
-          end
-        end   
-      end
-    end
+    #respond_to do |format|
+    #  format.html
+    #  format.pdf do
+    #    Tools::Fop.render_pdf({
+    #      :xml => @post.to_pdf,
+    #      :xsl => Rails.root.join("app", "views", "xsl", "generic.xsl")
+    #    }) do |pdf, success, error|
+    #      if success
+    #        send_file(pdf, :filename => "output.pdf", :content_type => "application/pdf")
+    #      else 
+    #        # raise or log error
+    #      end
+    #    end   
+    #  end
+    #end
 
     respond_with scoped_user, @post.blog, @post
   end

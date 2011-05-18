@@ -2,15 +2,13 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.xml
   def index
-    
     fancygrid_for :users do |grid|
       grid.hidden :id
       grid.attributes :username, :email
       grid.rendered :actions
       grid.url = users_path
       grid.find
-    end
-    
+    end        
   end
 
   # GET /users/1
