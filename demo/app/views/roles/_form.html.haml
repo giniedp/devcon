@@ -1,9 +1,0 @@
-= form_for role do |f|
-  = render :partial => "shared/errors", :locals => { :record => role }
-  
-  .field
-    = f.label :name
-    %br
-    = f.text_field :name
-  .actions
-    = f.submit

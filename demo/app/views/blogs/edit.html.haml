@@ -1,8 +1,0 @@
-%h1
-  Editing blog
-
-= render :partial => 'form', :locals => { :blog => @blog }
-
-= link_to 'Show', user_blog_path(scoped_user, @blog)
-|
-= link_to 'Back', user_blogs_path(scoped_user, @blog)
