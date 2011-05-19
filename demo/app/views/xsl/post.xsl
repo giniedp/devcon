@@ -68,7 +68,7 @@
     <xsl:param name="content"/>
     <fo:block>
       
-      <fo:block font-weight="bold" text-align="center">
+      <fo:block font-weight="bold" text-align="left">
         <fo:block font-size="16pt">
           <xsl:value-of select="$content/body"/>
         </fo:block>
@@ -89,109 +89,6 @@
   
   <xsl:template match="text()">
     <xsl:value-of select="."/>
-  </xsl:template>
-  
-  <!-- ======================================================================================
-    FORMATTING RULES
-    ======================================================================================= -->
-  
-  <xsl:template match="text">
-    <fo:block font-size="{$font_size_normal}" text-align="justify">
-      <xsl:apply-templates/>
-    </fo:block>
-  </xsl:template>
-  
-  <xsl:template match="p">
-    <fo:block space-before="15pt">
-      <xsl:apply-templates/>
-    </fo:block>
-  </xsl:template>
-  
-  <xsl:template match="span">
-    <fo:inline>
-      <xsl:apply-templates/>
-    </fo:inline>
-  </xsl:template>
-  
-  <xsl:template match="left">
-    <fo:block text-align="left">
-      <xsl:apply-templates/>
-    </fo:block>  
-  </xsl:template>
-  
-  <xsl:template match="center">
-    <fo:block text-align="center">
-      <xsl:apply-templates/>
-    </fo:block>  
-  </xsl:template>
-  
-  <xsl:template match="right">
-    <fo:block text-align="right">
-      <xsl:apply-templates/>
-    </fo:block>  
-  </xsl:template>
-  
-  <xsl:template match="bold|strong">
-    <fo:inline font-weight="bold">
-      <xsl:apply-templates/>
-    </fo:inline>  
-  </xsl:template>
-  
-  <xsl:template match="italic">
-    <fo:inline font-style="italic">
-      <xsl:apply-templates/>
-    </fo:inline>  
-  </xsl:template>
-  
-  <xsl:template match="regular|div">
-    <fo:block>
-      <xsl:apply-templates/>
-    </fo:block>  
-  </xsl:template>
-
-  <xsl:template match="tiny">
-    <fo:inline font-size="{$font_size_tiny}">
-      <xsl:apply-templates/>
-    </fo:inline>
-  </xsl:template>
-  
-  <xsl:template match="small">
-    <fo:inline font-size="{$font_size_small}">
-      <xsl:apply-templates/>
-    </fo:inline>
-  </xsl:template>
-  
-  <xsl:template match="medium">
-    <fo:inline font-size="{$font_size_normal}">
-      <xsl:apply-templates/>
-    </fo:inline>
-  </xsl:template>
-  
-  <xsl:template match="big">
-    <fo:inline font-size="{$font_size_big}">
-      <xsl:apply-templates/>
-    </fo:inline>
-  </xsl:template>
-  
-  <xsl:template match="large">
-    <fo:inline font-size="{$font_size_large}">
-      <xsl:apply-templates/>
-    </fo:inline>
-  </xsl:template>
-  
-  <xsl:template match="underline">
-    <fo:inline text-decoration="underline">
-      <xsl:apply-templates/>
-    </fo:inline>
-  </xsl:template>
-  
-  <xsl:template match="box">
-    <xsl:variable name="padding">10pt</xsl:variable>
-    <fo:block border="1pt solid black" >
-      <fo:block margin="{$padding}">
-        <xsl:apply-templates/>  
-      </fo:block>
-    </fo:block>  
   </xsl:template>
 
 </xsl:stylesheet>

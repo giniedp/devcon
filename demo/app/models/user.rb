@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
       }
     }.merge(options))
   end
-
+  
   def to_pdf
     self.to_xml
   end

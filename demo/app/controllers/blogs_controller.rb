@@ -32,7 +32,8 @@ class BlogsController < ApplicationController
         blog.attributes :title
       end
       
-      grid.attributes :id, :blog_id, :title, :description, :body
+      grid.hidden :body
+      grid.attributes :id, :blog_id, :title, :description
       grid.rendered :actions
       grid.url = user_blog_posts_path(scoped_user, @blog)
       grid.find do |query|
@@ -40,7 +41,7 @@ class BlogsController < ApplicationController
         query.conditions ["posts.blog_id = ?", @blog]
       end
     end
-    
+
     respond_with @blog
   end
 

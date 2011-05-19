@@ -15,7 +15,8 @@ class PostsController < ApplicationController
         blog.attributes :title
       end
       
-      grid.attributes :id, :blog_id, :title, :description, :body
+      grid.hidden :body
+      grid.attributes :id, :blog_id, :title, :description
       grid.rendered :actions
       grid.url = user_blog_posts_path(scoped_user, scoped_blog)
       grid.find do |query|
@@ -25,7 +26,7 @@ class PostsController < ApplicationController
       end
     end
 
-    respond_with(@fancygrid[:posts].dataset, :grid => @fancygrid[:posts], :responder => Responder::FancygridResponder)
+    #respond_with(@fancygrid[:posts].dataset, :grid => @fancygrid[:posts], :responder => Responder::FancygridResponder)
   end
 
   # GET /posts/1
@@ -38,18 +39,18 @@ class PostsController < ApplicationController
     #  format.pdf do
     #    Tools::Fop.render_pdf({
     #      :xml => @post.to_pdf,
-    #      :xsl => Rails.root.join("app", "views", "xsl", "generic.xsl")
+    #      :xsl => Rails.root.join("app", "views", "xsl", "post.xsl")
     #    }) do |pdf, success, error|
     #      if success
     #        send_file(pdf, :filename => "output.pdf", :content_type => "application/pdf")
     #      else 
-    #        # raise or log error
+    #        # TODO: raise or log error
     #      end
     #    end   
     #  end
     #end
 
-    respond_with scoped_user, @post.blog, @post
+    respond_with scoped_user, @post.blog, @post, :use_prawn => true
   end
 
   # GET /posts/new

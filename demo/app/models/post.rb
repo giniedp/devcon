@@ -17,4 +17,8 @@ class Post < ActiveRecord::Base
   def to_pdf
     self.to_xml
   end
+  
+  def to_csv
+    ""
+  end
 end

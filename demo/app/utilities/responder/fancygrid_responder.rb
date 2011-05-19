@@ -2,7 +2,7 @@ module Responder
   class FancygridResponder < ActionController::Responder
     
     def to_csv
-      raise "asdasddss"
+      raise "Fancygrid to CSV"
     end
   end
 end

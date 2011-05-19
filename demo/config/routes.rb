@@ -1,5 +1,6 @@
 Demo::Application.routes.draw do
   
+  resources :slides
   resources :roles
   resources :users do
     resources :blogs do

@@ -4,8 +4,5 @@ module Responder
     include Responders::HttpCacheResponder
     include Responders::CollectionResponder
     
-    def to_csv
-      raise "ADASD"
-    end
   end
 end
