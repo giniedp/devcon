@@ -1,0 +1,9 @@
+- case column.name
+- when :actions
+  = link_to "Show", user_blog_post_path(record.blog.user, record.blog, record)
+  |
+  = link_to "PDF", user_blog_post_path(record.blog.user, record.blog, record, :format => :pdf)
+  |
+  = link_to "Edit", edit_user_blog_post_path(record.blog.user, record.blog, record)
+  |
+  = link_to "Delete", user_blog_post_path(record.blog.user, record.blog, record), :method => :delete, :confirm => "Delete?"
